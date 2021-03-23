@@ -28,41 +28,42 @@ double A[N * N], B[N * N], C[N * N];
 // 	}
 // }
 
-// void dgemm_transpose(double *a, double *b, double *c, int n)
-// {
-//    int i, k, j;
-//    for (i = 0; i < N; i++){
-//       for (k = 0; k < N; k++) {
-//          for (j = 0; j < N; j++) {
-//          *(c + i * n + j) += *(a + i * n + k) * *(b + k * n + j);
-//          }
-//       }
-//    }
-// }
-
-void dgemm_block(double *a, double *b, double *c, int n)
+void dgemm_transpose(double *a, double *b, double *c, int n)
 {
+   int i, k, j;
 
-   int BS = 4, i0, k0, j0;
-   double *a0, *b0, *c0;
-   
-   for (int i = 0; i < n; i += BS) {
-      for (int j = 0; j < n; j += BS) {
-         for (int k = 0; k < n; k += BS) {
-            for (i0 = 0, c0 = (c + i * n + j),
-            a0 = (a + i * n + k); i0 < BS;
-            ++i0, c0 += n, a0 += n) {
-               for (k0 = 0, b0 = (b + k * n + j);
-               k0 < BS; ++k0, b0 += n) {
-                  for (j0 = 0; j0 < BS; ++j0) {
-                  c0[j0] += a0[k0] * b0[j0];
-               }
-            }
+   for (i = 0; i < N; i++){
+      for (k = 0; k < N; k++) {
+         for (j = 0; j < N; j++) {
+         *(c + i * n + j) += *(a + i * n + k) * *(b + k * n + j);
          }
       }
    }
-   }
 }
+
+// void dgemm_block(double *a, double *b, double *c, int n)
+// {
+//
+//    int BS = 4, i0, k0, j0;
+//    double *a0, *b0, *c0;
+//
+//    for (int i = 0; i < n; i += BS) {
+//       for (int j = 0; j < n; j += BS) {
+//          for (int k = 0; k < n; k += BS) {
+//             for (i0 = 0, c0 = (c + i * n + j),
+//             a0 = (a + i * n + k); i0 < BS;
+//             ++i0, c0 += n, a0 += n) {
+//                for (k0 = 0, b0 = (b + k * n + j);
+//                k0 < BS; ++k0, b0 += n) {
+//                   for (j0 = 0; j0 < BS; ++j0) {
+//                   c0[j0] += a0[k0] * b0[j0];
+//                }
+//             }
+//          }
+//       }
+//    }
+//    }
+// }
 
 void init_matrix(double *a, double *b, double *c, int n)
 {

@@ -14,7 +14,7 @@ int main()
 {
     int *v, i, sum;
     double t;
-    
+
     if ( (v = malloc(sizeof(*v) * n)) == NULL) {
         fprintf(stderr, "No enough memory\n");
         exit(EXIT_FAILURE);
@@ -22,12 +22,11 @@ int main()
 
     for (i = 0; i < n; i++)
         v[i] = 1;
-   
+
     t = hpctimer_wtime();
     /* TODO: Unroll this loop */
     for (sum = 0, i = 0; i < n; i++) {
         sum += v[i];
-    }
     t = hpctimer_wtime() - t;
 
     printf("Sum = %d\n", sum);

@@ -8,7 +8,7 @@
 #include "hpctimer.h"
 
 enum {
-    n = 1000000,
+    n = 100000,
     nreps = 20
 };
 
@@ -29,21 +29,20 @@ double x[n], y[n], z[n];
 //     }
 // }
 
-void blend_map_opt(double *dest, double *a, double *b, double *src, double *src_1, double *src_2,
-                     int size, int blend)
+void blend_map_opt(double *dest, double *a, double *b, int size, int blend)
 {
     /* TODO: Implement optimized version of blend_map */
     int i = 0;
 
     if (blend == 255)
       for (i = 0; i < size; i++)
-         dest[i] = src_1[i];
+         dest[i] = a[i];
    else if (blend == 0)
       for (i = 0; i < size; i++)
-         dest[i] = src_2[i];
+         dest[i] = b[i];
    else
       for (i = 0; i < size; i++)
-         dest[i] = (src_1[i] * blend + src_2[i]) * (255 - blend) / 256.0;
+         dest[i] = (a[i] * blend + b[i]) * (255 - blend) / 256.0;
 }
 
 int main()
