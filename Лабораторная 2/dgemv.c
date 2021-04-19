@@ -80,7 +80,7 @@ void matrix_vector_product(double *a, double *b, double *c, int m, int n)
 void matrix_vector_product_omp(double *a, double *b, double *c, int m, int n)
 {
    //параллельный регион. Доступно 6 ядер
-   #pragma omp parallel num_threads(7)
+   #pragma omp parallel proc_bind(spread) num_threads(2)
    {
       int nthreads = omp_get_num_threads(); //"ntreads" - локальная переменная для потоков
       int threadid = omp_get_thread_num(); //номер потока
