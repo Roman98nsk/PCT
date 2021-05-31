@@ -1,5 +1,3 @@
-//Задание 1. Вариант 1.
-
 #include <stdio.h>
 #include <math.h>
 #include <omp.h>
