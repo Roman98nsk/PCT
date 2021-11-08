@@ -18,10 +18,10 @@ set style line 13 lt 13 lw 1 pt 3 ps 0.5
 set style line 14 lt 14 lw 1 pt 5 ps 0.5
 set style line 15 lt 15 lw 1 pt 7 ps 0.5
 set style line 16 lt 16 lw 1 pt 9 ps 0.5
-set xlabel "Threads" font 'Calibri,16'
+set xlabel "Number process" font 'Calibri,16'
 set ylabel "Speedup" font 'Calibri,16'
-set format y "%.12g"
+set format y "%.6g"
 
 plot x title "Linear speedup" with lines lc rgb 'blue' lt 1 lw 2,\
      '10^7.dat' using 1:2 title "N=100000000" with linespoints ls 2,\
-     '10^8.dat' using 1:2 title "N=1000000000" with linespoints ls 3,\
+     '10^8.dat' using 1:2 title "N=1000000000" with linespoints ls 3\
